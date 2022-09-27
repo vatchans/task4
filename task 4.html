@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var request=new XMLHttpRequest();
+        request.open('GET','https://restcountries.com/v3.1/all',true)
+        request.send();
+        request.onload=function(){
+            var d=JSON.parse(request.response)
+           //a)
+        var resultmap=d.map((element)=>element.continents)
+        var resultfilter=resultmap.filter((element)=>element=='Asia')
+        console.log(resultfilter)
+        //b)
+        var pop=d.map((element)=>element.population)
+        var result=pop.filter((element)=>element<=200000)
+        console.log(result)
+        //c)
+        var n=d.map((element)=>element.name)
+        var f=d.map((element)=>element.flag)
+        var c=d.map((element)=>element.capital)
+        var r=[n,f,c]
+        r.forEach(element=>console.log(element))
+        //d)
+        var reducemethod=pop.reduce((acc,element)=>acc+element)
+        console.log(reducemethod)
+        
+        //e)
+       // var cur=d.map((element)=>element.currencies)
+        //console.log(cur)
+       // }
+       for(i=0;i<d.length;i++){
+                console.log(d[i].currencies)
+            }}
+
+    </script>
+</body>
+</html>
